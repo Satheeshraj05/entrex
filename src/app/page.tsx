@@ -11,17 +11,14 @@ import {
   ThemeProvider, 
   createTheme,
   TextField,
-  InputAdornment,
+
   MenuItem,
   Link as MuiLink
 } from '@mui/material';
-import { blue, grey, orange } from '@mui/material/colors';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
-import PersonIcon from '@mui/icons-material/Person';
-import MenuIcon from '@mui/icons-material/Menu';
+
+import Image from 'next/image';
+
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 
@@ -96,8 +93,7 @@ const FAQItem = ({ faq }: FAQItemProps) => (
   </Box>
 );
 
-// Import theme from theme directory
-import theme from '../theme/theme';
+// Theme is now imported and used in the themeInstance below
 
 // Create a theme instance (keeping this for backward compatibility)
 const themeInstance = createTheme({
@@ -207,21 +203,16 @@ const themeInstance = createTheme({
 });
 
 function Home() {
-  const router = useRouter();
-  const [mounted, setMounted] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
 
-  // This ensures we don't render the component on the server
+  const [mounted, setMounted] = useState(false);
+
   useEffect(() => {
     setMounted(true);
   }, []);
 
   const handleBookingSuccess = () => {
-    setShowSuccess(true);
-    // Optionally redirect to bookings page after a delay
-    // setTimeout(() => {
-    //   router.push('/bookings');
-    // }, 2000);
+    // Success handler for booking form
+    console.log('Booking successful!');
   };
 
   return (
@@ -690,11 +681,20 @@ function Home() {
                   boxShadow: '0 10px 30px rgba(0,0,0,0.1)'
                 }
               }}>
-                <img 
-                  src="/images/employee_commute.png" 
-                  alt="Employee Commute"
-                  style={{ width: '100%', height: 'auto' }}
-                />
+                <div style={{ position: 'relative', width: '100%', height: 'auto' }}>
+                  <Image 
+                    src="/images/employee_commute.png" 
+                    alt="Employee Commute"
+                    width={600}
+                    height={400}
+                    style={{
+                      width: '100%',
+                      height: 'auto',
+                      objectFit: 'cover',
+                      borderRadius: '16px'
+                    }}
+                  />
+                </div>
               </Box>
             </Box>
 
@@ -740,10 +740,19 @@ function Home() {
                     boxShadow: '0 10px 30px rgba(0,0,0,0.1)'
                   }
                 }}>
-                  <img 
-                    src="/images/car_image.png" 
-                    alt="Premium Fleet"
-                  />
+                  <div style={{ position: 'relative', width: '100%', height: 'auto', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 8px 24px rgba(0,0,0,0.1)' }}>
+                    <Image 
+                      src="/images/car_image.png" 
+                      alt="Premium Fleet"
+                      width={600}
+                      height={400}
+                      style={{
+                        width: '100%',
+                        height: 'auto',
+                        objectFit: 'cover'
+                      }}
+                    />
+                  </div>
                 </Box>
 
                 {/* Right Side - Features */}
@@ -781,7 +790,13 @@ function Home() {
                         mr: 3,
                         flexShrink: 0
                       }}>
-                        <img src="/mobile.png" alt="Hatchbacks & Sedans" style={{ width: '40px', height: '40px' }} />
+                        <Image 
+                          src="/mobile.png" 
+                          alt="Hatchbacks & Sedans" 
+                          width={40} 
+                          height={40} 
+                          style={{ width: '40px', height: '40px' }} 
+                        />
                       </Box>
                       Hatchbacks & Sedans
                     </Typography>
@@ -798,7 +813,13 @@ function Home() {
                         mr: 2,
                         flexShrink: 0
                       }}>
-                        <img src="/eye.png" alt="MUVs & SUVs" style={{ width: '36px', height: '36px' }} />
+                        <Image 
+                          src="/eye.png" 
+                          alt="MUVs & SUVs" 
+                          width={36} 
+                          height={36} 
+                          style={{ width: '36px', height: '36px' }} 
+                        />
                       </Box>
                       MUVs & SUVs
                     </Typography>
@@ -815,7 +836,13 @@ function Home() {
                         mr: 2,
                         flexShrink: 0
                       }}>
-                        <img src="/map.png" alt="Tempo Travelers" style={{ width: '36px', height: '36px' }} />
+                        <Image 
+                          src="/map.png" 
+                          alt="Tempo Travelers" 
+                          width={36} 
+                          height={36} 
+                          style={{ width: '36px', height: '36px' }} 
+                        />
                       </Box>
                       Mini & Large Tempo Travelers
                     </Typography>
@@ -832,7 +859,13 @@ function Home() {
                         mr: 2,
                         flexShrink: 0
                       }}>
-                        <img src="/award.png" alt="Luxury Coaches" style={{ width: '36px', height: '36px' }} />
+                        <Image 
+                          src="/award.png" 
+                          alt="Luxury Coaches" 
+                          width={36} 
+                          height={36} 
+                          style={{ width: '36px', height: '36px' }} 
+                        />
                       </Box>
                       Luxury Air-Conditioned Coaches (on request)
                     </Typography>
@@ -873,9 +906,11 @@ function Home() {
                       borderRadius: '50%',
                       bgcolor: 'rgba(0, 166, 153, 0.1)'
                     }}>
-                      <img 
+                      <Image 
                         src="/user-plus-duotone 1.png" 
                         alt="User Plus" 
+                        width={40}
+                        height={40}
                         style={{ width: '40px', height: '40px' }} 
                       />
                     </Box>
@@ -910,9 +945,11 @@ function Home() {
                       borderRadius: '50%',
                       bgcolor: 'rgba(0, 166, 153, 0.1)'
                     }}>
-                      <img 
+                      <Image 
                         src="/package-duotone (1) 1.png" 
                         alt="Package" 
+                        width={40}
+                        height={40}
                         style={{ width: '40px', height: '40px' }} 
                       />
                     </Box>
@@ -947,9 +984,11 @@ function Home() {
                       borderRadius: '50%',
                       bgcolor: 'rgba(0, 166, 153, 0.1)'
                     }}>
-                      <img 
+                      <Image 
                         src="/Notepad.png" 
                         alt="Notepad" 
+                        width={40}
+                        height={40}
                         style={{ width: '40px', height: '40px' }} 
                       />
                     </Box>
@@ -984,9 +1023,11 @@ function Home() {
                       borderRadius: '50%',
                       bgcolor: 'rgba(0, 166, 153, 0.1)'
                     }}>
-                      <img 
+                      <Image 
                         src="/package-duotone (1) 1 (1).png" 
                         alt="Package Duo" 
+                        width={40}
+                        height={40}
                         style={{ width: '40px', height: '40px' }} 
                       />
                     </Box>
@@ -1073,9 +1114,11 @@ function Home() {
                   borderRadius: '50%',
                   bgcolor: 'rgba(0, 166, 153, 0.1)'
                 }}>
-                  <img 
+                  <Image 
                     src="/user-plus-duotone 1.png" 
                     alt="Requirement Mapping" 
+                    width={40}
+                    height={40}
                     style={{ width: '40px', height: '40px' }} 
                   />
                 </Box>
@@ -1112,9 +1155,11 @@ function Home() {
                   borderRadius: '50%',
                   bgcolor: 'rgba(0, 166, 153, 0.1)'
                 }}>
-                  <img 
+                  <Image 
                     src="/package-duotone (1) 1.png" 
                     alt="Deployment Plan" 
+                    width={40}
+                    height={40}
                     style={{ width: '40px', height: '40px' }} 
                   />
                 </Box>
@@ -1151,9 +1196,11 @@ function Home() {
                   borderRadius: '50%',
                   bgcolor: 'rgba(0, 166, 153, 0.1)'
                 }}>
-                  <img 
+                  <Image 
                     src="/Notepad.png" 
                     alt="Live Execution" 
+                    width={40}
+                    height={40}
                     style={{ width: '40px', height: '40px' }} 
                   />
                 </Box>
@@ -1190,9 +1237,11 @@ function Home() {
                   borderRadius: '50%',
                   bgcolor: 'rgba(0, 166, 153, 0.1)'
                 }}>
-                  <img 
+                  <Image 
                     src="/package-duotone (1) 1 (1).png" 
                     alt="Transparent Billing" 
+                    width={40}
+                    height={40}
                     style={{ width: '40px', height: '40px' }} 
                   />
                 </Box>
@@ -1273,17 +1322,22 @@ function Home() {
                     }
                   }}
                 >
-                  <img 
-                    src={item.icon} 
-                    alt={item.alt}
-                    style={{ 
-                      width: '80%',
-                      height: '80%',
-                      objectFit: 'contain',
-                      transition: 'transform 0.3s ease',
-                      cursor: 'pointer'
-                    }} 
-                  />
+                  <div style={{ 
+                    position: 'relative',
+                    width: '80%',
+                    height: '80%',
+                    transition: 'all 0.3s ease-in-out',
+                    cursor: 'pointer'
+                  }}>
+                    <Image 
+                      src={item.icon} 
+                      alt={item.alt}
+                      fill
+                      style={{ 
+                        objectFit: 'contain'
+                      }} 
+                    />
+                  </div>
                 </Box>
               ))}
             </Box>
@@ -1347,19 +1401,20 @@ function Home() {
                 opacity: 1
               }
             }}>
-              <img 
-                src="/Logos.png" 
-                alt="Our Valued Clients"
-                style={{
-                  width: '100%',
-                  height: 'auto',
-                  filter: 'grayscale(100%)',
-                  opacity: 0.7,
-                  transition: 'all 0.5s ease',
-                  objectFit: 'contain',
-                  marginBottom: '40px'
-                }}
-              />
+              <div style={{ position: 'relative', width: '100%', height: '100px' }}>
+                <Image 
+                  src="/Logos.png" 
+                  alt="Our Valued Clients"
+                  fill
+                  style={{
+                    objectFit: 'contain',
+                    filter: 'grayscale(100%)',
+                    opacity: 0.7,
+                    transition: 'all 0.5s ease',
+                    marginBottom: '40px'
+                  }}
+                />
+              </div>
               <Box sx={{ 
                 width: '100%',
                 overflow: 'hidden',
@@ -1371,16 +1426,21 @@ function Home() {
                   objectFit: 'cover'
                 }
               }}>
-                <img 
+                <Image 
                   src="/Group 1171276250.png" 
                   alt="Trusted Partners"
+                  width={1200}
+                  height={400}
+                  style={{
+                    width: '100%',
+                    height: 'auto'
+                  }}
                 />
               </Box>
             </Box>
           </Container>
         </Box>
 
-        
         <Box sx={{ py: 10, bgcolor: '#f9f9f9' }}>
           <Container maxWidth="lg">
             <Box sx={{ textAlign: 'center', mb: 8 }}>
@@ -1400,7 +1460,7 @@ function Home() {
                 fontSize: '1.1rem',
                 lineHeight: 1.6
               }}>
-                Got questions? We've got answers! Find solutions to common queries about our services, processes, and technology.
+                Got questions? We&apos;ve got answers! Find solutions to common queries about our services, processes, and technology.
               </Typography>
             </Box>
 
@@ -1522,13 +1582,12 @@ function Home() {
                   boxShadow: '0 8px 25px rgba(0,0,0,0.1)'
                 }
               }}>
-                <Box sx={{ width: '100%', height: '200px', overflow: 'hidden' }}>
-                  <img 
+                <Box sx={{ width: '100%', height: '200px', position: 'relative', overflow: 'hidden' }}>
+                  <Image 
                     src="/Mask group.png" 
                     alt="Surviving through tough times as a first time SaaS"
+                    fill
                     style={{ 
-                      width: '100%', 
-                      height: '100%',
                       objectFit: 'cover'
                     }}
                   />
@@ -1584,13 +1643,12 @@ function Home() {
                   boxShadow: '0 8px 25px rgba(0,0,0,0.1)'
                 }
               }}>
-                <Box sx={{ width: '100%', height: '200px', overflow: 'hidden' }}>
-                  <img 
+                <Box sx={{ width: '100%', height: '200px', position: 'relative', overflow: 'hidden' }}>
+                  <Image 
                     src="/Image.png" 
                     alt="SaaS customer development and no-code prototypes"
-                    style={{ 
-                      width: '100%', 
-                      height: '100%',
+                    fill
+                    style={{
                       objectFit: 'cover'
                     }}
                   />
@@ -1646,13 +1704,12 @@ function Home() {
                   boxShadow: '0 8px 25px rgba(0,0,0,0.1)'
                 }
               }}>
-                <Box sx={{ width: '100%', height: '200px', overflow: 'hidden' }}>
-                  <img 
+                <Box sx={{ width: '100%', height: '200px', position: 'relative', overflow: 'hidden' }}>
+                  <Image 
                     src="/Mask group (1).png" 
                     alt="Highnote Emerges from Stealth with $54 Million in funding"
-                    style={{ 
-                      width: '100%', 
-                      height: '100%',
+                    fill
+                    style={{
                       objectFit: 'cover'
                     }}
                   />
@@ -1716,7 +1773,7 @@ function Home() {
                   lineHeight: 1.2,
                   mb: 4
                 }}>
-                  Let's Talk
+                  Let&apos;s Talk
                 </Typography>
                 
                 <Box sx={{ mb: 4 }}>

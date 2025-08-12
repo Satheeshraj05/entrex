@@ -1,21 +1,23 @@
 import { createTheme } from '@mui/material/styles';
 
-// Disable MUI's default props that might conflict with browser extensions
-const defaultProps = {
-  MuiButtonBase: {
-    disableRipple: true,
-    disableTouchRipple: true,
-  },
-  MuiButton: {
-    disableElevation: true,
-    disableFocusRipple: true,
-    disableRipple: true,
-    disableTouchRipple: true,
-  },
-};
-
-// Create a theme instance
+// Create a theme instance with default props to disable ripple effects
 const theme = createTheme({
+  components: {
+    MuiButtonBase: {
+      defaultProps: {
+        disableRipple: true,
+        disableTouchRipple: true,
+      },
+    },
+    MuiButton: {
+      defaultProps: {
+        disableElevation: true,
+        disableFocusRipple: true,
+        disableRipple: true,
+        disableTouchRipple: true,
+      },
+    },
+  },
   palette: {
     primary: {
       main: '#FF5A5F',
