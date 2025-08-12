@@ -70,13 +70,7 @@ Entrex is a modern, responsive web application built with Next.js, TypeScript, a
    yarn
    ```
 
-3. **Environment Configuration**
-   
-   # Backend API Configuration
-   NEXT_PUBLIC_API_URL=http://localhost:3000/api  # Update this if your backend is hosted elsewhere
-   ```
-
-4. **Start Development Server**
+3. **Start Development Server**
    ```bash
    # Using npm
    npm run dev
