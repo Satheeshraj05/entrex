@@ -164,51 +164,9 @@ npm run build
 npm start
 ```
 
-### Deployment Options
 
-#### Vercel (Recommended)
-1. Push your code to a Git repository
-2. Import the repository in Vercel
-3. Configure environment variables in the Vercel dashboard
-4. Deploy!
 
-#### Self-Hosted
-1. Set up a Node.js server
-2. Build the application: `npm run build`
-3. Start the server: `npm start`
-4. Configure a reverse proxy (Nginx/Apache) if needed
 
-## 🔧 Troubleshooting
 
-### Common Issues
 
-#### Development Server Not Starting
-- Ensure no other process is using port 3000
-- Check for syntax errors in the code
-- Try deleting `.next` folder and `node_modules`, then reinstall dependencies
 
-#### TypeScript Errors
-- Run `npm run type-check` to identify type issues
-- Ensure all new components have proper TypeScript types
-- Check for missing type definitions for third-party libraries
-
-## 📚 Additional Resources
-
-- [Next.js Documentation](https://nextjs.org/docs)
-- [React Documentation](https://react.dev/)
-- [TypeScript Documentation](https://www.typescriptlang.org/docs/)
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 📧 Support
-
-For support or questions, please open an issue in the GitHub repository.
-
----
-
-<div align="center">
-  Built with ❤️ using Next.js, TypeScript, and Tailwind CSS
-</div>
