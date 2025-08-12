@@ -22,6 +22,14 @@ Entrex is a modern, responsive web application built with Next.js, TypeScript, a
 
 ## 🛠 Technology Stack
 
+### Backend
+- **Runtime**: Node.js
+- **Framework**: Express.js
+- **Database**: MongoDB with Mongoose ODM
+- **API**: RESTful architecture
+- **Validation**: express-validator
+- **Date Handling**: date-fns
+
 ### Frontend
 - **Framework**: Next.js 15 (App Router)
 - **UI Library**: React 19
@@ -63,9 +71,9 @@ Entrex is a modern, responsive web application built with Next.js, TypeScript, a
    ```
 
 3. **Environment Configuration**
-   Create a `.env.local` file in the root directory with the following variables:
-   ```env
-   NEXT_PUBLIC_API_URL=your_api_url_here
+   
+   # Backend API Configuration
+   NEXT_PUBLIC_API_URL=http://localhost:3000/api  # Update this if your backend is hosted elsewhere
    ```
 
 4. **Start Development Server**
@@ -132,6 +140,32 @@ npm run type-check
 - Use TypeScript types for all new code
 - Write meaningful commit messages following [Conventional Commits](https://www.conventionalcommits.org/)
 - Keep components small and focused on a single responsibility
+
+## 🌐 Backend Integration
+
+### Backend Repository
+- [GitHub Repository](https://github.com/Satheeshraj05/entrex_backend)
+
+### API Configuration
+The frontend communicates with the backend REST API. Make sure to set up the backend server before running the frontend.
+
+### API Endpoints
+
+#### Bookings
+- `GET /bookings` - Retrieve all bookings
+- `POST /bookings` - Create a new booking
+- `GET /bookings/:id` - Get a specific booking
+- `PUT /bookings/:id` - Update a booking
+- `DELETE /bookings/:id` - Delete a booking
+
+### CORS Configuration
+The backend is configured with CORS support. Ensure your frontend domain is whitelisted in the backend configuration if deploying to production.
+
+### Data Flow
+1. Frontend makes HTTP requests to the backend API
+2. Backend processes requests and interacts with MongoDB
+3. Responses are returned in JSON format
+4. Frontend handles the response and updates the UI accordingly
 
 ## 🧪 Testing
 
